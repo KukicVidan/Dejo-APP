@@ -31,61 +31,51 @@
             </select>
             <input type="submit" value="Filter">
         </form>
+        <a href="index.php" class="navbar-link">⬅️BACK</a>
     </nav>
 
     <!-- Content Section -->
     <div class="view-container">
         <div class="cards">
-            
-                    <?php
-                $db = new SQLite3('db/database.sqlite');
+            <?php
+            $db = new SQLite3('db/database.sqlite');
 
-                $month = isset($_GET['month']) ? $_GET['month'] : '';
-                $year = isset($_GET['year']) ? $_GET['year'] : '';
+            $month = isset($_GET['month']) ? $_GET['month'] : '';
+            $year = isset($_GET['year']) ? $_GET['year'] : '';
 
-                $query = "SELECT * FROM ratings WHERE 1=1";
-                if ($month) {
-                    $query .= " AND strftime('%m', created_at) = '".str_pad($month, 2, "0", STR_PAD_LEFT)."'";
+            $query = "SELECT * FROM ratings WHERE 1=1";
+            if ($month) {
+                $query .= " AND strftime('%m', created_at) = '".str_pad($month, 2, "0", STR_PAD_LEFT)."'";
+            }
+            if ($year) {
+                $query .= " AND strftime('%Y', created_at) = '$year'";
+            }
+            $query .= " ORDER BY created_at DESC";
+
+            $results = $db->query($query);
+
+            while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+                echo "<div class='card'>";
+                if ($row['image']) {
+                    echo "<img src='{$row['image']}' alt='Image'>";
                 }
-                if ($year) {
-                    $query .= " AND strftime('%Y', created_at) = '$year'";
+                echo "<p>👩🏻Name: {$row['name']}</p>";
+                if ($row['url']) {
+                    echo "<p>🔗Insta: <a href='{$row['url']}'>Link</a></p>";
                 }
-                $query .= " ORDER BY created_at DESC";
-
-                $results = $db->query($query);
-
-                $counter = 0; // Counter to keep track of cards per row
-                while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-                    if ($counter % 3 == 0) {
-                        echo "<div class='row'>"; // Start new row after every three cards
-                    }
-                    echo "<div class='card'>";
-                    if ($row['image']) {
-                        echo "<img src='{$row['image']}' alt='Image'>";
-                    }
-                    echo "<p>👩🏻Name: {$row['name']}</p>";
-                    if ($row['url']) {
-                        echo "<p>🔗Insta: <a href='{$row['url']}'>Link</a></p>";
-                    }
-                    echo "<div class='star-rating'>";
-                    for ($i = 1; $i <= 5; $i++) {
-                        if ($i <= $row['rating']) {
-                            echo "<span class='star selected' data-value='$i'>⭐</span>"; // Filled star
-                        } else {
-                            echo "<span class='star' data-value='$i'>⭐</span>"; // Empty star
-                        }
-                    }
-                    echo "</div>";
-                    echo "<p>📅Date: " . date('d F Y', strtotime($row['created_at'])) . "</p>"; // Format date
-                    echo "</div>";
-
-                    $counter++;
-                    if ($counter % 3 == 0) {
-                        echo "</div>"; // Close row after three cards
+                echo "<div class='star-rating'>";
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $row['rating']) {
+                        echo "<span class='star selected' data-value='$i'>⭐️</span>"; // Filled star
+                    } else {
+                        echo "<span class='star' data-value='$i'>☆</span>"; // Empty star
                     }
                 }
-                ?>
-
+                echo "</div>";
+                echo "<p>📅Date: " . date('d F Y', strtotime($row['created_at'])) . "</p>"; // Format date
+                echo "</div>";
+            }
+            ?>
         </div>
     </div>
 </body>

@@ -3,7 +3,8 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $url = $_POST['url'];
-    $rating = $_POST['rating'];
+    $rating = intval($_POST['rating']);
+
 
     $imagePath = null;
     if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
@@ -16,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindValue(':name', $name, SQLITE3_TEXT);
     $stmt->bindValue(':url', $url, SQLITE3_TEXT);
     $stmt->bindValue(':image', $imagePath, SQLITE3_TEXT);
-    $stmt->bindValue(':rating', $rating, SQLITE3_FLOAT);
+    $stmt->bindValue(':rating', $rating, SQLITE3_INTEGER);
     $stmt->execute();
 
     echo "Rating submitted successfully. <a href='index.php'>Go back</a>";

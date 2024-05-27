@@ -54,19 +54,19 @@ body {
 }
 
 .card {
-  width: calc(33.33% - 10px); /* Adjusted width */
+  width: calc(33.33% - 20px); /* Adjusted width */
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.705);
-  margin-right: 20px;
-  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.562);
+  margin-right: 20px; /* Spacing between cards */
+  margin-bottom: 20px; /* Spacing between rows */
 }
 
 .card:last-child {
-  margin-right: 0;
+  margin-right: 0; /* Remove right margin for the last card in each row */
 }
 
 .card img {
@@ -77,4 +77,45 @@ body {
 
 .card p {
   margin: 10px 0;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #91354c;
+  padding: 10px;
+}
+
+.navbar form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar label {
+  color: white;
+  margin-right: 5px;
+}
+
+.navbar select {
+  padding: 5px;
+}
+
+.navbar input[type="submit"] {
+  padding: 5px 10px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.navbar input[type="submit"]:hover {
+  background-color: #00408a;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
 }
