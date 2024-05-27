@@ -37,6 +37,7 @@
     <!-- Content Section -->
     <div class="view-container">
         <div class="cards">
+            
             <?php
             $db = new SQLite3('db/database.sqlite');
 
