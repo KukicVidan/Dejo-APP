@@ -8,18 +8,18 @@
 <body>
     <div class="form-container">
         <div class="card">
-            <h1>Rate an Item</h1>
+            <h1>Jeko treba?</h1>
             <form action="submit.php" method="POST" enctype="multipart/form-data">
-                <label for="name">Name:</label>
+                <label for="name">👩🏻Name:</label>
                 <input type="text" id="name" name="name" required><br>
 
-                <label for="url">URL:</label>
+                <label for="url">🔗INSTA:</label>
                 <input type="url" id="url" name="url"><br>
 
-                <label for="image">Image:</label>
+                <label for="image">📷Image:</label>
                 <input type="file" id="image" name="image" accept="image/*"><br>
 
-                <label for="rating">Rating:</label>
+                <label for="rating">💘Rating:</label>
                 <div class="star-rating">
                     <input type="hidden" id="rating" name="rating">
                     <span class="star" data-value="1">&#9733;</span>
