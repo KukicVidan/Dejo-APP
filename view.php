@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>View Ratings</title>
     <link rel="stylesheet" href="assets/view-styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -37,7 +38,6 @@
     <!-- Content Section -->
     <div class="view-container">
         <div class="cards">
-            
             <?php
             $db = new SQLite3('db/database.sqlite');
 
@@ -56,7 +56,7 @@
             $results = $db->query($query);
 
             while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-                echo "<div class='card'>";
+                echo "<div class='card' data-id='{$row['id']}'>";
                 if ($row['image']) {
                     echo "<img src='{$row['image']}' alt='Image'>";
                 }
@@ -74,10 +74,27 @@
                 }
                 echo "</div>";
                 echo "<p>📅Date: " . date('d F Y', strtotime($row['created_at'])) . "</p>"; // Format date
+                echo "<button class='delete-btn' data-id='{$row['id']}' title='briši kurvu' >🗑️</button>"; // Delete button
                 echo "</div>";
             }
             ?>
         </div>
     </div>
+
+    <script>
+    $(document).ready(function() {
+        $('.delete-btn').click(function() {
+            var card = $(this).closest('.card');
+            var id = $(this).data('id');
+            $.post('delete.php', { id: id }, function(response) {
+                if (response.success) {
+                    card.remove();
+                } else {
+                    alert('Error deleting card.');
+                }
+            }, 'json');
+        });
+    });
+    </script>
 </body>
 </html>
