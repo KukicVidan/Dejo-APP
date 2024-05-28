@@ -3,12 +3,12 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: rgb(173, 103, 115);
+  background-color: rgb(8, 87, 31);
   font-size: large;
 }
 
 .navbar {
-  background-color: #91354c;
+  background-color: rgb(3, 31, 11);
   padding: 10px;
 }
 
@@ -20,11 +20,13 @@ body {
 
 .navbar label {
   color: white;
-  margin-right: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .navbar select {
   padding: 5px;
+  border-radius: 5%;
 }
 
 .navbar input[type="submit"] {
@@ -35,6 +37,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
+  margin-left: 5px;
 }
 
 .navbar input[type="submit"]:hover {
@@ -77,12 +80,13 @@ body {
 
 .card p {
   margin: 10px 0;
+  font-size: larger;
 }
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #91354c;
+  background-color: rgb(3, 31, 11);
   padding: 10px;
 }
 
@@ -99,6 +103,7 @@ body {
 
 .navbar select {
   padding: 5px;
+  background-color: rgba(255, 255, 255, 0.678);
 }
 
 .navbar input[type="submit"] {

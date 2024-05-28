@@ -35,7 +35,7 @@
 
                 <input type="submit" value="Submit">
             </form>
-            <a href="view.php">View Ratings</a>
+            <a href="view.php">View Ratings📊</a>
         </div>
     </div>
     <script src="assets/scripts.js"></script>

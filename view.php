@@ -20,7 +20,7 @@
                 }
                 ?>
             </select>
-            <label for="year">Year:</label>
+            <label for="year"> Year:</label>
             <select id="year" name="year">
                 <option value="">All</option>
                 <?php
